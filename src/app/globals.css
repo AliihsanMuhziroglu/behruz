@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --space-dark: #0a0e27;
+  --neon-purple: #a855f7;
+  --neon-blue: #3b82f6;
+  --neon-orange: #f97316;
+  --neon-green: #22c55e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--space-dark);
+  color: #f1f5f9;
+  min-height: 100vh;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+h1, h2, h3, .section-title {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+@layer components {
+  .neon-card {
+    @apply rounded-3xl border border-white/10 bg-space-card/80 backdrop-blur-md;
+  }
+
+  .neon-btn {
+    @apply rounded-full px-6 py-3 font-bold transition-all duration-300
+           focus:outline-none focus-visible:ring-4 focus-visible:ring-neon-purple/50;
+  }
+
+  .neon-btn-primary {
+    @apply neon-btn bg-gradient-to-r from-neon-purple to-neon-blue text-white
+           hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.6)];
+  }
+
+  .neon-btn-secondary {
+    @apply neon-btn border-2 border-neon-orange text-neon-orange
+           hover:bg-neon-orange/20 hover:shadow-[0_0_20px_rgba(249,115,22,0.5)];
+  }
+
+  .section-title {
+    @apply text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl;
+  }
+}
+
+.disco-mode {
+  animation: disco-bg 3s linear infinite;
+}
+
+@keyframes disco-bg {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(59, 130, 246, 0.4);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
